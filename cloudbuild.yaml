@@ -1,0 +1,15 @@
+steps:
+  # Build the Docker image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'northamerica-northeast2-docker.pkg.dev/tidal-shield-412402/morwal-flaskapp:latest', '.']
+
+  # Push the Docker image to Google Artifact Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'northamerica-northeast2-docker.pkg.dev/tidal-shield-412402/morwal-flaskapp:latest']
+
+# Specify the image to store in the Container Registry
+images:
+  - 'northamerica-northeast2-docker.pkg.dev/tidal-shield-412402/morwal-flaskapp:latest'
+
+options:
+  default_logs_bucket_behavior: REGIONAL_USER_OWNED_BUCKET
